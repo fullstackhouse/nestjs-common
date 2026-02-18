@@ -86,6 +86,7 @@
     "STYLEGUIDE.md"
   ],
   "scripts": {
+    "prepare": "tsup",
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
