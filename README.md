@@ -80,24 +80,26 @@ initSentry({
 });
 ```
 
-#### `SentryExceptionFilter`
+#### `CommonSentryModule.forRoot(): DynamicModule`
 
-Global exception filter that captures all exceptions to Sentry, then delegates to NestJS's default error handling. Register as a global filter in your `AppModule`:
+All-in-one module that registers both `SentryModule` (instrumentation) and `SentryExceptionFilter` (global exception capture). This is the recommended way to set up Sentry:
 
 ```ts
-import { SentryExceptionFilter, SentryModule } from '@fullstackhouse/nestjs-common/sentry';
-import { APP_FILTER } from '@nestjs/core';
+import { CommonSentryModule } from '@fullstackhouse/nestjs-common/sentry';
 
 @Module({
-  imports: [SentryModule.forRoot()],
-  providers: [{ provide: APP_FILTER, useClass: SentryExceptionFilter }],
+  imports: [CommonSentryModule.forRoot()],
 })
 export class AppModule {}
 ```
 
+#### `SentryExceptionFilter`
+
+Global exception filter that captures all exceptions to Sentry, then delegates to NestJS's default error handling. Included automatically by `CommonSentryModule` — only use directly if you need custom provider registration.
+
 #### `SentryModule`
 
-Re-exported from `@sentry/nestjs/setup`. Registers Sentry instrumentation in the NestJS dependency injection system.
+Re-exported from `@sentry/nestjs/setup`. Registers Sentry instrumentation in the NestJS dependency injection system. Included automatically by `CommonSentryModule`.
 
 ---
 

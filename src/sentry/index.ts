@@ -1,7 +1,9 @@
-import { ArgumentsHost, HttpException } from '@nestjs/common';
-import { BaseExceptionFilter } from '@nestjs/core';
+import { ArgumentsHost, HttpException, Module } from '@nestjs/common';
+import { type DynamicModule } from '@nestjs/common';
+import { APP_FILTER, BaseExceptionFilter } from '@nestjs/core';
 import * as Sentry from '@sentry/nestjs';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
+import { SentryModule } from '@sentry/nestjs/setup';
 type SentryInitOptions = Parameters<typeof Sentry.init>[0];
 
 export type InitSentryOptions = {
@@ -35,4 +37,15 @@ export class SentryExceptionFilter extends BaseExceptionFilter {
   }
 }
 
-export { SentryModule } from '@sentry/nestjs/setup';
+export { SentryModule };
+
+@Module({})
+export class CommonSentryModule {
+  static forRoot(): DynamicModule {
+    return {
+      module: CommonSentryModule,
+      imports: [SentryModule.forRoot()],
+      providers: [{ provide: APP_FILTER, useClass: SentryExceptionFilter }],
+    };
+  }
+}
