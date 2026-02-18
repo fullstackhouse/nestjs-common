@@ -10,7 +10,6 @@ export default defineConfig({
     'src/validation/index.ts',
     'src/database/index.ts',
     'src/database/migrate.ts',
-    'src/health/index.ts',
     'src/config/vitest.ts',
     'src/config/eslint.ts',
     'src/testing/index.ts',
