@@ -19,6 +19,11 @@ export function createVitestConfig(overrides?: {
       fileParallelism: false,
       pool: 'threads',
       isolate: false,
+      onConsoleLog(log) {
+        if (log.includes('SERVER_ERROR') && log.includes('better-auth')) {
+          return false;
+        }
+      },
       ...overrides?.test,
     },
     plugins: [

@@ -1,3 +1,8 @@
+import { UnderscoreNamingStrategy } from '@mikro-orm/core';
+import { Migrator } from '@mikro-orm/migrations';
+import debug from 'debug';
+import { parseBoolean } from '../env';
+
 export interface DatabaseConnectionOptions {
   databaseUrl?: string;
   host?: string;
@@ -6,6 +11,13 @@ export interface DatabaseConnectionOptions {
   password?: string;
   dbName?: string;
   schema?: string;
+}
+
+export interface DatabaseConfigOptions extends DatabaseConnectionOptions {
+  entitiesPath?: string;
+  entitiesTsPath?: string;
+  migrationsPath?: string;
+  migrationsTsPath?: string;
 }
 
 export function createDatabaseConnectionConfig(opts: DatabaseConnectionOptions) {
@@ -44,5 +56,26 @@ export function createDatabaseConnectionConfig(opts: DatabaseConnectionOptions) 
     password: opts.password ?? 'postgres',
     dbName: opts.dbName ?? 'app',
     schema: opts.schema ?? 'public',
+  };
+}
+
+export function createDatabaseConfig(opts: DatabaseConfigOptions) {
+  const cli = parseBoolean(process.env.CLI) ?? false;
+  const entitiesPath = opts.entitiesPath ?? './dist/database/entities';
+  const entitiesTsPath = opts.entitiesTsPath ?? './src/database/entities';
+
+  return {
+    ...createDatabaseConnectionConfig(opts),
+    entities: [`${entitiesPath}/**/*.js`],
+    entitiesTs: [`${entitiesTsPath}/**/*.ts`],
+    discovery: { warnWhenNoEntities: false },
+    debug: debug.enabled('mikro-orm'),
+    namingStrategy: UnderscoreNamingStrategy,
+    extensions: [Migrator],
+    migrations: {
+      path: opts.migrationsPath ?? './dist/database/migrations',
+      pathTs: opts.migrationsTsPath ?? './src/database/migrations',
+    },
+    allowGlobalContext: cli,
   };
 }
