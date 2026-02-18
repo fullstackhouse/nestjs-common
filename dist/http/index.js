@@ -21,7 +21,6 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/http/index.ts
 var http_exports = {};
 __export(http_exports, {
-  createCorsConfig: () => createCorsConfig,
   getRequestClientIp: () => getRequestClientIp
 });
 module.exports = __toCommonJS(http_exports);
@@ -33,15 +32,7 @@ function getRequestClientIp(req) {
   return req.socket.remoteAddress;
 }
 __name(getRequestClientIp, "getRequestClientIp");
-function createCorsConfig(opts) {
-  return {
-    origin: opts.appEnv === "local" ? true : opts.allowedOrigins,
-    credentials: true
-  };
-}
-__name(createCorsConfig, "createCorsConfig");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  createCorsConfig,
   getRequestClientIp
 });

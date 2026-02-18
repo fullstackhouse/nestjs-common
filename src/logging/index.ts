@@ -1,16 +1,26 @@
+import { Module, type DynamicModule } from '@nestjs/common';
 import type { Params as LoggerModuleParams } from 'nestjs-pino';
+import { LoggerModule } from 'nestjs-pino';
+import { isLocal } from '../env';
 
-export interface CreateLoggerConfigOptions {
+export interface CommonLoggerModuleOptions {
   level?: string;
-  prettyPrint?: boolean;
   ignorePaths?: string[];
 }
 
-export function createLoggerConfig(
-  opts?: CreateLoggerConfigOptions,
-): LoggerModuleParams {
-  const level = opts?.level ?? 'info';
-  const prettyPrint = opts?.prettyPrint ?? false;
+@Module({})
+export class CommonLoggerModule {
+  static forRoot(opts?: CommonLoggerModuleOptions): DynamicModule {
+    return {
+      module: CommonLoggerModule,
+      imports: [LoggerModule.forRoot(createLoggerConfig(opts))],
+    };
+  }
+}
+
+function createLoggerConfig(opts?: CommonLoggerModuleOptions): LoggerModuleParams {
+  const level = opts?.level ?? process.env.LOG_LEVEL ?? 'info';
+  const prettyPrint = isLocal();
   const ignorePaths = opts?.ignorePaths ?? ['/health'];
 
   return {

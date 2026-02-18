@@ -1,10 +1,11 @@
-import { Params } from 'nestjs-pino';
+import { DynamicModule } from '@nestjs/common';
 
-interface CreateLoggerConfigOptions {
+interface CommonLoggerModuleOptions {
     level?: string;
-    prettyPrint?: boolean;
     ignorePaths?: string[];
 }
-declare function createLoggerConfig(opts?: CreateLoggerConfigOptions): Params;
+declare class CommonLoggerModule {
+    static forRoot(opts?: CommonLoggerModuleOptions): DynamicModule;
+}
 
-export { type CreateLoggerConfigOptions, createLoggerConfig };
+export { CommonLoggerModule, type CommonLoggerModuleOptions };
