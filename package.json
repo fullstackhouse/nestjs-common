@@ -37,6 +37,10 @@
       "types": "./dist/database/migrate.d.ts",
       "default": "./dist/database/migrate.js"
     },
+    "./swagger": {
+      "types": "./dist/swagger/index.d.ts",
+      "default": "./dist/swagger/index.js"
+    },
     "./config/vitest": {
       "types": "./dist/config/vitest.d.ts",
       "default": "./dist/config/vitest.js"
@@ -69,6 +73,7 @@
       "validation": ["dist/validation/index.d.ts"],
       "database": ["dist/database/index.d.ts"],
       "database/migrate": ["dist/database/migrate.d.ts"],
+      "swagger": ["dist/swagger/index.d.ts"],
       "config/vitest": ["dist/config/vitest.d.ts"],
       "config/eslint": ["dist/config/eslint.d.ts"],
       "testing": ["dist/testing/index.d.ts"],
@@ -77,7 +82,8 @@
   },
   "files": [
     "dist",
-    "src/config/*.json"
+    "src/config/*.json",
+    "STYLEGUIDE.md"
   ],
   "scripts": {
     "build": "tsup",
@@ -92,6 +98,7 @@
     "@mikro-orm/migrations": ">=6",
     "@mikro-orm/nestjs": ">=6",
     "@mikro-orm/postgresql": ">=6",
+    "@nestjs/cli": ">=10",
     "@nestjs/common": ">=10",
     "@nestjs/core": ">=10",
     "@nestjs/swagger": ">=7",
@@ -127,6 +134,9 @@
       "optional": true
     },
     "@mikro-orm/migrations": {
+      "optional": true
+    },
+    "@nestjs/cli": {
       "optional": true
     },
     "@nestjs/swagger": {
@@ -180,6 +190,7 @@
     "@mikro-orm/migrations": "^6.5.9",
     "@mikro-orm/nestjs": "^6.1.1",
     "@mikro-orm/postgresql": "^6.5.9",
+    "@nestjs/cli": "^11.0.0",
     "@nestjs/common": "^11.1.8",
     "@nestjs/core": "^11.1.8",
     "@nestjs/swagger": "^11.2.1",

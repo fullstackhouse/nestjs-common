@@ -161,6 +161,30 @@ await app.listen(3000);
 
 ---
 
+### Swagger Metadata — [`/swagger`](src/swagger/index.ts)
+
+Generates NestJS Swagger plugin metadata for OpenAPI spec generation. Requires `@nestjs/cli` and `@nestjs/swagger` as peer deps.
+
+#### `generateMetadata(opts: GenerateMetadataOptions): void`
+
+Runs the `@nestjs/swagger` `ReadonlyVisitor` plugin to generate a `metadata.ts` file in your `src/` directory. This file is needed for OpenAPI spec generation with the NestJS CLI plugin.
+
+Options:
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `rootDir` | `string` | Absolute path to your app root (where `src/` lives) |
+
+```ts
+// scripts/generate-metadata.ts
+import { generateMetadata } from '@fullstackhouse/nestjs-common/swagger';
+import { join } from 'path';
+
+generateMetadata({ rootDir: join(__dirname, '..') });
+```
+
+---
+
 ### Database — [`/database`](src/database/index.ts)
 
 MikroORM + PostgreSQL configuration helpers. Requires `@mikro-orm/core`, `@mikro-orm/postgresql`, `@mikro-orm/migrations`, and `debug` as peer deps.
