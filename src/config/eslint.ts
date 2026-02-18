@@ -8,7 +8,9 @@ export interface CreateEslintConfigOptions {
   rootDir: string;
 }
 
-export function createEslintConfig(opts: CreateEslintConfigOptions): ConfigArray {
+export function createEslintConfig(
+  opts: CreateEslintConfigOptions,
+): ConfigArray {
   const compat = new FlatCompat({
     baseDirectory: opts.rootDir,
     recommendedConfig: js.configs.recommended,
@@ -34,10 +36,7 @@ export function createEslintConfig(opts: CreateEslintConfigOptions): ConfigArray
 
       rules: {
         curly: ['error', 'all'],
-        '@typescript-eslint/array-type': [
-          'error',
-          { default: 'array-simple' },
-        ],
+        '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
         '@typescript-eslint/return-await': ['error', 'always'],
         'no-restricted-imports': [
           'error',

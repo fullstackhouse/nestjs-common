@@ -32,7 +32,9 @@ function buildMigratorOptions(options: MigrateOptions): MigratorUpDownOptions {
   return migrateOpts;
 }
 
-export function parseMigrateArgs(argv: string[] = process.argv): MigrateOptions {
+export function parseMigrateArgs(
+  argv: string[] = process.argv,
+): MigrateOptions {
   const args = argv.slice(2);
 
   if (args.length === 0 || args[0] === '-h' || args[0] === '--help') {
@@ -83,7 +85,7 @@ export async function runMigrations(
   options: MigrateOptions,
 ): Promise<void> {
   const { disableCustomSchema = false, direction = 'up' } = options;
-  const schema = (config.schema as string) ?? 'public';
+  const schema = config.schema! ?? 'public';
   const targetSchema = disableCustomSchema ? 'public' : schema;
   const useCustomSchema = targetSchema !== 'public' && !disableCustomSchema;
 

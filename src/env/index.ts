@@ -1,6 +1,4 @@
-export function parseBoolean(
-  value: string | undefined,
-): boolean | undefined {
+export function parseBoolean(value: string | undefined): boolean | undefined {
   if (value === '1' || value === 'true') {
     return true;
   }
@@ -11,7 +9,7 @@ export function parseBoolean(
 }
 
 export function getAppEnv(): string {
-  return process.env.APP_ENV || 'prod';
+  return process.env.APP_ENV ?? 'prod';
 }
 
 export function isLocal(): boolean {

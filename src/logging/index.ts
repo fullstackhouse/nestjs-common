@@ -18,7 +18,9 @@ export class CommonLoggerModule {
   }
 }
 
-function createLoggerConfig(opts?: CommonLoggerModuleOptions): LoggerModuleParams {
+function createLoggerConfig(
+  opts?: CommonLoggerModuleOptions,
+): LoggerModuleParams {
   const level = opts?.level ?? process.env.LOG_LEVEL ?? 'info';
   const prettyPrint = isLocal();
   const ignorePaths = opts?.ignorePaths ?? ['/health'];

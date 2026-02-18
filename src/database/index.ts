@@ -20,7 +20,9 @@ export interface DatabaseConfigOptions extends DatabaseConnectionOptions {
   migrationsTsPath?: string;
 }
 
-export function createDatabaseConnectionConfig(opts: DatabaseConnectionOptions) {
+export function createDatabaseConnectionConfig(
+  opts: DatabaseConnectionOptions,
+) {
   if (process.env.SKIP_DB_CONNECTION === 'true') {
     return {
       host: 'localhost',
