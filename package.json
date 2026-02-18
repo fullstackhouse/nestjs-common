@@ -1,0 +1,209 @@
+{
+  "name": "@fullstackhouse/nestjs-common",
+  "version": "0.1.0",
+  "description": "Common utilities for building NestJS backends",
+  "license": "MIT",
+  "type": "commonjs",
+  "exports": {
+    "./env": {
+      "types": "./dist/env/index.d.ts",
+      "default": "./dist/env/index.js"
+    },
+    "./http": {
+      "types": "./dist/http/index.d.ts",
+      "default": "./dist/http/index.js"
+    },
+    "./sentry": {
+      "types": "./dist/sentry/index.d.ts",
+      "default": "./dist/sentry/index.js"
+    },
+    "./logging": {
+      "types": "./dist/logging/index.d.ts",
+      "default": "./dist/logging/index.js"
+    },
+    "./cls": {
+      "types": "./dist/cls/index.d.ts",
+      "default": "./dist/cls/index.js"
+    },
+    "./validation": {
+      "types": "./dist/validation/index.d.ts",
+      "default": "./dist/validation/index.js"
+    },
+    "./database": {
+      "types": "./dist/database/index.d.ts",
+      "default": "./dist/database/index.js"
+    },
+    "./database/migrate": {
+      "types": "./dist/database/migrate.d.ts",
+      "default": "./dist/database/migrate.js"
+    },
+    "./health": {
+      "types": "./dist/health/index.d.ts",
+      "default": "./dist/health/index.js"
+    },
+    "./config/vitest": {
+      "types": "./dist/config/vitest.d.ts",
+      "default": "./dist/config/vitest.js"
+    },
+    "./config/eslint": {
+      "types": "./dist/config/eslint.d.ts",
+      "default": "./dist/config/eslint.js"
+    },
+    "./config/tsconfig.json": "./src/config/tsconfig.json",
+    "./config/tsconfig.build.json": "./src/config/tsconfig.build.json",
+    "./config/nest-cli.json": "./src/config/nest-cli.json",
+    "./config/swcrc.json": "./src/config/swcrc.json",
+    "./config/prettierrc.json": "./src/config/prettierrc.json",
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    },
+    "./testing/setup": {
+      "types": "./dist/testing/setup.d.ts",
+      "default": "./dist/testing/setup.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "env": ["dist/env/index.d.ts"],
+      "http": ["dist/http/index.d.ts"],
+      "sentry": ["dist/sentry/index.d.ts"],
+      "logging": ["dist/logging/index.d.ts"],
+      "cls": ["dist/cls/index.d.ts"],
+      "validation": ["dist/validation/index.d.ts"],
+      "database": ["dist/database/index.d.ts"],
+      "database/migrate": ["dist/database/migrate.d.ts"],
+      "health": ["dist/health/index.d.ts"],
+      "config/vitest": ["dist/config/vitest.d.ts"],
+      "config/eslint": ["dist/config/eslint.d.ts"],
+      "testing": ["dist/testing/index.d.ts"],
+      "testing/setup": ["dist/testing/setup.d.ts"]
+    }
+  },
+  "files": [
+    "dist",
+    "src/config/*.json"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings 0"
+  },
+  "peerDependencies": {
+    "@eslint/eslintrc": ">=3",
+    "@eslint/js": ">=9",
+    "@mikro-orm/core": ">=6",
+    "@mikro-orm/migrations": ">=6",
+    "@mikro-orm/nestjs": ">=6",
+    "@mikro-orm/postgresql": ">=6",
+    "@nestjs/common": ">=10",
+    "@nestjs/core": ">=10",
+    "@nestjs/swagger": ">=7",
+    "@nestjs/terminus": ">=10",
+    "@sentry/nestjs": ">=8",
+    "@sentry/profiling-node": ">=8",
+    "eslint": ">=9",
+    "eslint-config-prettier": ">=9",
+    "eslint-plugin-prettier": ">=5",
+    "globals": ">=15",
+    "nestjs-cls": ">=4",
+    "nestjs-pino": ">=4",
+    "nestjs-zod": ">=4",
+    "pino-http": ">=10",
+    "typescript-eslint": ">=8",
+    "unplugin-swc": ">=1",
+    "vitest": ">=2"
+  },
+  "peerDependenciesMeta": {
+    "@eslint/eslintrc": {
+      "optional": true
+    },
+    "@eslint/js": {
+      "optional": true
+    },
+    "@mikro-orm/core": {
+      "optional": true
+    },
+    "@mikro-orm/nestjs": {
+      "optional": true
+    },
+    "@mikro-orm/postgresql": {
+      "optional": true
+    },
+    "@mikro-orm/migrations": {
+      "optional": true
+    },
+    "@nestjs/swagger": {
+      "optional": true
+    },
+    "@nestjs/terminus": {
+      "optional": true
+    },
+    "@sentry/nestjs": {
+      "optional": true
+    },
+    "@sentry/profiling-node": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "eslint-config-prettier": {
+      "optional": true
+    },
+    "eslint-plugin-prettier": {
+      "optional": true
+    },
+    "globals": {
+      "optional": true
+    },
+    "nestjs-cls": {
+      "optional": true
+    },
+    "nestjs-pino": {
+      "optional": true
+    },
+    "nestjs-zod": {
+      "optional": true
+    },
+    "pino-http": {
+      "optional": true
+    },
+    "typescript-eslint": {
+      "optional": true
+    },
+    "unplugin-swc": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@mikro-orm/core": "^6.5.9",
+    "@mikro-orm/migrations": "^6.5.9",
+    "@mikro-orm/nestjs": "^6.1.1",
+    "@mikro-orm/postgresql": "^6.5.9",
+    "@nestjs/common": "^11.1.8",
+    "@nestjs/core": "^11.1.8",
+    "@nestjs/swagger": "^11.2.1",
+    "@nestjs/terminus": "^11.0.0",
+    "@sentry/nestjs": "^10.22.0",
+    "@sentry/profiling-node": "^10.22.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.0",
+    "dotenv": "^17.3.1",
+    "nestjs-cls": "^6.2.0",
+    "nestjs-pino": "^4.4.1",
+    "nestjs-zod": "^4.0.0",
+    "pino-http": "^11.0.0",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.56.0",
+    "unplugin-swc": "^1.5.9",
+    "vitest": "^4.0.18"
+  }
+}
