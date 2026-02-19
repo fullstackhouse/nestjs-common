@@ -19,7 +19,7 @@ export function createEslintConfig(
 
   return tseslint.config(
     {
-      ignores: ['dist/**', 'node_modules/**', 'src/metadata.d.ts'],
+      ignores: ['dist/**', 'node_modules/**', 'src/metadata.ts'],
     },
     ...tseslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
